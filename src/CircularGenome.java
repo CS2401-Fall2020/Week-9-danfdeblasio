@@ -1,8 +1,11 @@
 
 public class CircularGenome {
+  // two Nucleotide pointers for head and tail
   Nucleotide head;
   Nucleotide tail;
   
+  // constructor populates the head and tail pointer with Nucleotides
+  // should use charAt and toUpperCase
   CircularGenome(String inGenome){
     String allCapsGenome = inGenome.toUpperCase();
     head = new Nucleotide(allCapsGenome.charAt(0));
@@ -14,6 +17,8 @@ public class CircularGenome {
     tail.next = head;
   }
   
+  // output a linearized version of the circular genome, use the pointers to know when youve made one rotation
+  // no need to change case here, will always output in all caps
   public String toString() {
     Nucleotide current = head;
     String rtn = "";
@@ -25,6 +30,13 @@ public class CircularGenome {
     return rtn;
   }
   
+  /* checks each position as a possible start location either returns:
+   *    "'<all caps search>' found at position(s) #, #...." 
+   *         or 
+   *   "'<all caps search>' not found"
+   * 
+   *    should use toUpperCase and match but no need for charAt in this method
+   */
   public String search(String inSequence) {
     String allCapsSequence = inSequence.toUpperCase();
     String foundString = "";
