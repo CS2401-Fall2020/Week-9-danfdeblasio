@@ -16,9 +16,12 @@ public class tester {
     
     System.out.println(banana.search("nab"));
     assert(banana.search("nab").equals("'NAB' found at position(s) 5"));
-    
+
     System.out.println(banana.search("bananabanana"));
     assert(banana.search("bananabanana").equals("'BANANABANANA' found at position(s) 1"));
+    
+    System.out.println(banana.search("anabananabananabananabananaban"));
+    assert(banana.search("anabananabananabananabananaban").equals("'ANABANANABANANABANANABANANABAN' found at position(s) 4"));
     
     System.out.println(banana.search("bananas"));
     assert(banana.search("bananas").equals("'BANANAS' not found"));

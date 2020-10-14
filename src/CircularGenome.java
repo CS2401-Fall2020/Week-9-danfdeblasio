@@ -22,10 +22,14 @@ public class CircularGenome {
   public String toString() {
     Nucleotide current = head;
     String rtn = "";
-    do{
+
+    // note this could also be done with a do-while rather than a while true 
+    // this other method is shown in match
+    while(true) {
       rtn += current.getChar();
-      current = current.next;
-    } while(current != head);
+      if(current == tail) break;
+      else current = current.next;
+    }
     
     return rtn;
   }
@@ -42,16 +46,28 @@ public class CircularGenome {
     String foundString = "";
     Nucleotide current = head;
     int pos = 1;
+    
+    // note that without a do while you could have a while(true) then an if(current == tail) break; as above
     do {
+      
+      // if it matches at this position
       if(current.match(allCapsSequence)) {
+        
+        // if this is the first position thats matched populate the foundString
         if(foundString.length()==0) {
           foundString = "'" + allCapsSequence +"' found at position(s) " + String.valueOf(pos);
+          
+        // otherwise just append the new position
         }else {
           foundString += ", " + String.valueOf(pos);
         }
       }
+      
+      // increments the pointer and the counter
       current = current.next;
       pos++;
+      
+    // this loop only makes one pass, the match can go beyond the current position though
     } while(current!=head);
     
     if(foundString.length()==0) {
